@@ -67,6 +67,20 @@
                 reader.readAsDataURL(file);
             }
         });
+        const gallery = document.getElementById('gallery');
+
+// Fetch images from the server
+fetch('/images')
+    .then(response => response.json())
+    .then(imageUrls => {
+        imageUrls.forEach(imageUrl => {
+            const image = new Image();
+            image.src = imageUrl;
+            gallery.appendChild(image);
+        });
+    })
+    .catch(error => console.error('Error fetching images:', error));
+
     </script>
 </body>
 </html>
